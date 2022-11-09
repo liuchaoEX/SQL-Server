@@ -135,3 +135,23 @@ select * from Course
 
 alter table Course
 drop column RemainNum
+go
+create view 视图名称
+as
+select
+go
+
+create view 一班
+as
+select * from Student where ClassNo='20000001'
+--使用视图
+select * from 一班
+--在视图中修改：林斌->林小斌
+update 一班 set StuName='林小斌' where StuName='林斌'
+
+select * from 一班
+
+update Student set StuName='林斌' where StuName='林小斌'
+
+delete from 一班 where StuName='林斌'
+--创建视图v_Class，只显示Class表中系部编码为‘01’的系部的班级信息

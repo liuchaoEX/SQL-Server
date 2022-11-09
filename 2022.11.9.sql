@@ -120,3 +120,18 @@ where DepartName=@xb
 go
 
 select * from dbo.cx2('建筑工程系')
+create function CalcRemainNum
+	(@X decimal(6,0),@Y decimal(6,0))
+returns decimal(6,0)
+as
+begin
+	return (@X-@Y)
+end
+go
+alter table Course
+add RemainNum as dbo.CalcRemainNum(LimitNum,ChooseNum)
+go
+select * from Course
+
+alter table Course
+drop column RemainNum

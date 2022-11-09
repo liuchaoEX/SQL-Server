@@ -155,3 +155,6 @@ update Student set StuName='林斌' where StuName='林小斌'
 
 delete from 一班 where StuName='林斌'
 --创建视图v_Class，只显示Class表中系部编码为‘01’的系部的班级信息
+create view v_Class
+as
+select * from Class where DepartNo='01'

@@ -1,5 +1,5 @@
---9.2 ÄÚÖÃº¯Êı
---×Ö·ûº¯Êı
+--9.2 å†…ç½®å‡½æ•°
+--å­—ç¬¦å‡½æ•°
 select ascii('a'),char(100)
 select right('abcds',2),left('abcds',2),substring('abcdfe',2,3)
 select len(ltrim('  djkk  ')),len(rtrim('  jki  '))
@@ -8,7 +8,7 @@ select lower('Abcd'),upper('BCdf')
 select reverse('abcd')
 select charindex('ab','nklabcdf')
 select replicate('av',3)
---ÈÕÆÚº¯Êı
+--æ—¥æœŸå‡½æ•°
 select getdate()
 select datename(year,getdate())
 select datename(dy,getdate())
@@ -17,15 +17,15 @@ select datename(dw,getdate())
 select datepart(dw,getdate())
 select datepart(dy,getdate())
 select datepart(year,getdate())
---select datediff(ÈÕÆÚÔªËØ£¬ÈÕÆÚ1£¬ÈÕÆÚ2)
+--select datediff(æ—¥æœŸå…ƒç´ ï¼Œæ—¥æœŸ1ï¼Œæ—¥æœŸ2)
 select datediff(year,'2000/10/10','2020/10/10')
 select datediff(dw,'2000/10/10','2020/10/10')
 select datediff(dd,'2002/12/16',getdate())
 select dateadd(dd,10,getdate())
 select year(getdate())
---ÊıÑ§º¯Êı
+--æ•°å­¦å‡½æ•°
 select abs(-34),ceiling(3.4),floor(3.4),pi(),power(3,4),rand(),round(123.3456,2),sqrt(18)
---ÏµÍ³º¯Êı
+--ç³»ç»Ÿå‡½æ•°
 select cast(1234 as char(4))
 select len(1234)
 select len('1234')
@@ -34,25 +34,25 @@ select convert(char(5),1234)
 select host_name()
 select isdate('2020/2/30')
 select isnumeric('2020/2/30')
-select datalength('345µØ·½')
-select len('345µØ·½')
---ÔªÊı¾İº¯Êı
+select datalength('345åœ°æ–¹')
+select len('345åœ°æ–¹')
+--å…ƒæ•°æ®å‡½æ•°
 select COL_LENGTH('student','stuno')
 select col_name(object_id('student'),3)
 select db_id('xk')
---°²È«º¯Êı
+--å®‰å…¨å‡½æ•°
 select user
 select has_dbaccess('xk')
---ÅäÖÃº¯Êı
---×Ô¶¨Òåº¯Êı
-create function º¯ÊıÃû(º¯Êı²ÎÊı)
+--é…ç½®å‡½æ•°
+--è‡ªå®šä¹‰å‡½æ•°
+create function å‡½æ•°å(å‡½æ•°å‚æ•°)
 returns table
 as
 begin
- return select Óï¾ä
+ return select è¯­å¥
 end
---×Ô¶¨Òåº¯ÊıÍê³ÉÈÎÒâÁ½¸öÊıµÄÇóºÍ
---±êÁ¿Öµº¯Êı£ºÖ»·µ»ØÒ»¸ö½á¹ûµÄº¯Êı
+--è‡ªå®šä¹‰å‡½æ•°å®Œæˆä»»æ„ä¸¤ä¸ªæ•°çš„æ±‚å’Œ
+--æ ‡é‡å€¼å‡½æ•°ï¼šåªè¿”å›ä¸€ä¸ªç»“æœçš„å‡½æ•°
 go
 create function qh(@x float,@y float)
 returns float
@@ -64,7 +64,7 @@ begin
 
  select dbo.qh(3.8987,56789)
 
- --·â×°Ò»¸öº¯ÊıÍê³É½×³ËµÄ¹¦ÄÜ
+ --å°è£…ä¸€ä¸ªå‡½æ•°å®Œæˆé˜¶ä¹˜çš„åŠŸèƒ½
  go
  create function jc(@x int)
  returns int
@@ -82,19 +82,19 @@ begin
  go
 
  select dbo.jc(18)
- --±íÖµº¯Êı£º·µ»ØÖµÊÇ±íÖĞµÄÄÚÈİ£¬¿ÉÒÔÊÇÈÎÒâ¶àÁĞ
- --select£ºselectÃüÁîÕıÈ·£¬ÏâÇ¶µ½º¯Êı½á¹¹ÖĞ
- --²éÑ¯ÁÖ±óËùÑ¡µÄ¿Î³Ì£¬¼°ÏàÓ¦µÄÉÏ¿ÎÀÏÊ¦ºÍÉÏ¿ÎÊ±¼ä
+ --è¡¨å€¼å‡½æ•°ï¼šè¿”å›å€¼æ˜¯è¡¨ä¸­çš„å†…å®¹ï¼Œå¯ä»¥æ˜¯ä»»æ„å¤šåˆ—
+ --selectï¼šselectå‘½ä»¤æ­£ç¡®ï¼Œé•¶åµŒåˆ°å‡½æ•°ç»“æ„ä¸­
+ --æŸ¥è¯¢æ—æ–Œæ‰€é€‰çš„è¯¾ç¨‹ï¼ŒåŠç›¸åº”çš„ä¸Šè¯¾è€å¸ˆå’Œä¸Šè¯¾æ—¶é—´
  select couname,teacher,schooltime
  from course join student on course.CouNo=stucou.CouNo
  join student on Student.StuNo=stucou.StuNo
  where stuname=@name
- --±íÖµº¯ÊıµÄÓï·¨
- /*create function º¯ÊıÃû(º¯Êı²ÎÊı)
+ --è¡¨å€¼å‡½æ•°çš„è¯­æ³•
+ /*create function å‡½æ•°å(å‡½æ•°å‚æ•°)
 returns table
 as
 begin
- return select Óï¾ä
+ return select è¯­å¥
 end
 */
 go
@@ -107,6 +107,16 @@ from course join stucou on course.CouNo=stucou.CouNo
 join student on Student.StuNo=stucou.StuNo
 where stuname=@name
 go
-select * from dbo.cxl('ÁºÁÁ')
+select * from dbo.cxl('æ¢äº®')
 
---¼ÆËã»úÓ¦ÓÃ¹¤³ÌÏµ¿ªÉèµÄ¿Î³ÌÑ¡ĞŞÇé¿ö£¨¿Î³ÌÃû£¬Ñ¡ĞŞÈËÊı£¬ÉÏ¿ÎÀÏÊ¦£©
+--è®¡ç®—æœºåº”ç”¨å·¥ç¨‹ç³»å¼€è®¾çš„è¯¾ç¨‹é€‰ä¿®æƒ…å†µï¼ˆè¯¾ç¨‹åï¼Œé€‰ä¿®äººæ•°ï¼Œä¸Šè¯¾è€å¸ˆï¼‰
+create function cx2(@xb char(20))
+returns table
+as
+return
+select couname,willnum,teacher
+from Course join Department on Course.DepartNo=Department.DepartNo
+where DepartName=@xb
+go
+
+select * from dbo.cx2('å»ºç­‘å·¥ç¨‹ç³»')

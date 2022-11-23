@@ -62,3 +62,16 @@ select * from course where couno='019' or couno='018'
 update StuCou set couno='019' where couno='018' and stuno='00000001'
 
 select * from stucou
+--12.6针对某个列进行修改时
+
+update Department set DepartNo='05' where DepartName='管理系'
+go
+--12.7继续在department上创建update触发器
+create trigger text_trigger
+on department
+for update
+as
+print '二次触发'
+
+
+update Department set DepartName='计算机系' where DepartNo='05' 

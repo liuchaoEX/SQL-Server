@@ -87,3 +87,15 @@ update Department set DepartName='管理系' where DepartNo='05'
 --启动触发器
 alter table department enable trigger test_trg
 update Department set DepartName='计算机系' where DepartNo='05'
+--操作数据全部执行，delete  update
+--update  score   set  cj=cj+10  where  cj<60
+/*
+游标的处理过程：
+	Declare创建游标
+	Open打开游标
+	Fetch取游标一行，要循环处理
+	Close关闭游标
+	Deallocate 删除游标
+*/
+--创建游标的格式
+--declare  游标名称  cursor  游标类型 

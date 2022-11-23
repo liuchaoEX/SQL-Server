@@ -114,3 +114,10 @@ fetch next from cur_course
 fetch next from cur_course
 --通过游标更新当前游标指向的数据
 update course set limitnum=100 where current of cur_course
+fetch next from cur_course
+update course set limitnum=200 where current of cur_course
+--通过游标删除当前游标指向的数据
+delete from course where current of cur_course
+--关闭游标
+close cur_course
+--释放游标

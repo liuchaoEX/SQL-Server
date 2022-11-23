@@ -121,3 +121,4 @@ delete from course where current of cur_course
 --关闭游标
 close cur_course
 --释放游标
+deallocate cur_course

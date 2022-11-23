@@ -54,3 +54,11 @@ update course set willnum=willnum-1 where couno=(select couno from deleted)
 print 'course表的人数已做相应更新'
 
 --验证
+select * from stucou where couno='018'
+delete stucou where couno='018' and stuno='010000001'
+select * from course where couno='019' or couno='018'
+
+--000000001   018  ->019
+update StuCou set couno='019' where couno='018' and stuno='00000001'
+
+select * from stucou

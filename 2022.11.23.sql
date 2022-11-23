@@ -1,47 +1,47 @@
---12.2¶Ôstudent´´½¨updateºóµÄ´¥·¢Æ÷£¬ÏÔÊ¾ĞŞ¸ÄÇ°ºóµÄÊı¾İ
+--12.2å¯¹studentåˆ›å»ºupdateåçš„è§¦å‘å™¨ï¼Œæ˜¾ç¤ºä¿®æ”¹å‰åçš„æ•°æ®
 create trigger update_student_trigger
 on student
 for update
 as
-print 'ĞŞ¸ÄÇ°µÄÊı¾İ'
+print 'ä¿®æ”¹å‰çš„æ•°æ®'
 select * from deleted
-print 'ĞŞ¸ÄºóµÄÊı¾İ'
+print 'ä¿®æ”¹åçš„æ•°æ®'
 select * from inserted
 
 
---ÑéÖ¤´¥·¢Æ÷
-update student set StuName='ÁÖĞ¡±ó' where stuname='ÁÖ±ó'
+--éªŒè¯è§¦å‘å™¨
+update student set StuName='æ—å°æ–Œ' where stuname='æ—æ–Œ'
 
 select *from student
-update student set pwd='1111111' where StuName='ÁÖĞ¡±ó'
+update student set pwd='1111111' where StuName='æ—å°æ–Œ'
 go
 
 
---12.4´´½¨Ìæ´ú´¥·¢Æ÷£ºµ±Ö´ĞĞÄ³²Ù×÷£¬¸Ã²Ù×÷»á±»´¥·¢Ìæ´ú
---½ûÖ¹¶Ô±íÖ´ĞĞÏà¹Ø²Ù×÷£¬½ûÖ¹¶Ôdepartment±íÖ´ĞĞ¸üĞÂ²Ù×÷
+--12.4åˆ›å»ºæ›¿ä»£è§¦å‘å™¨ï¼šå½“æ‰§è¡ŒæŸæ“ä½œï¼Œè¯¥æ“ä½œä¼šè¢«è§¦å‘æ›¿ä»£
+--ç¦æ­¢å¯¹è¡¨æ‰§è¡Œç›¸å…³æ“ä½œï¼Œç¦æ­¢å¯¹departmentè¡¨æ‰§è¡Œæ›´æ–°æ“ä½œ
 create trigger update_department_trigger
 on department
 instead of update
 as
-print '½ûÖ¹¶Ô±íÖ´ĞĞ¸üĞÂ²Ù×÷'
+print 'ç¦æ­¢å¯¹è¡¨æ‰§è¡Œæ›´æ–°æ“ä½œ'
 
---ÑéÖ¤
+--éªŒè¯
 select * from department
 
-update department set DepartName='Ó¢ÓïÏµ' where DepartNo='03'
---ĞŞ¸Ä
+update department set DepartName='è‹±è¯­ç³»' where DepartNo='03'
+--ä¿®æ”¹
 
 go
 alter trigger update_department_trigger
 on department
 instead of update,insert
 as
-print '½ûÖ¹¶Ô±íÖ´ĞĞ¸üĞÂ²Ù×÷'
---ÑéÖ¤
+print 'ç¦æ­¢å¯¹è¡¨æ‰§è¡Œæ›´æ–°æ“ä½œ'
+--éªŒè¯
 go
-insert into Department values('04','ÂÃÓÎÏµ')
---12.5  stucouºÍcourse;  µ±¶Ôstucou±íÖĞµÄÊı¾İ½øĞĞ¸üĞÂÊ±£¬(Ñ¡¿ÎÇé¿öµÄ±ä¶¯)£¬course±íÖĞµÄÈËÊı×öÏàÓ¦±ä»¯
---ÔÚstucouÖĞ²éÑ¯Ñ¡ĞŞ001¿Î³ÌµÄÈËÊı
+insert into Department values('04','æ—…æ¸¸ç³»')
+--12.5  stucouå’Œcourse;  å½“å¯¹stucouè¡¨ä¸­çš„æ•°æ®è¿›è¡Œæ›´æ–°æ—¶ï¼Œ(é€‰è¯¾æƒ…å†µçš„å˜åŠ¨)ï¼Œcourseè¡¨ä¸­çš„äººæ•°åšç›¸åº”å˜åŒ–
+--åœ¨stucouä¸­æŸ¥è¯¢é€‰ä¿®001è¯¾ç¨‹çš„äººæ•°
 select count(*) from StuCou where CouNo='001'
 go
 
@@ -49,4 +49,8 @@ create trigger setwillnum
 on stucou
 after insert,delete,update
 as
-update course set willnum=willnum+1
+update course set willnum=willnum+1 where couno=(select couno from inserted)
+update course set willnum=willnum-1 where couno=(select couno from deleted)
+print 'courseè¡¨çš„äººæ•°å·²åšç›¸åº”æ›´æ–°'
+
+--éªŒè¯

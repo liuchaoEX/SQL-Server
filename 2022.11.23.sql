@@ -99,3 +99,6 @@ update Department set DepartName='计算机系' where DepartNo='05'
 */
 --创建游标的格式
 --declare  游标名称  cursor  游标类型 
+
+--创建游标，通过游标逐条读取course表中每条记录、
+select * from Course

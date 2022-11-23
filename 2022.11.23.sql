@@ -110,3 +110,21 @@ delete from course where current of cur_course
 close cur_course
 --释放(删除)游标
 deallocate cur_course
+go
+
+--13.2 创建使用变量的游标：创建游标将course表中的couno和couname存储到变量中
+declare @couno char(3),@couname char(30)
+declare crscourse cursor
+for
+select couno,couname from course order by couno
+open crscourse
+fetch next from crscourse into @couno,@couname
+while @@fetch_status=0
+begin
+print '课程编号'+@couno+'课程名称:'+@couname
+print ('-----------------------------------')
+fetch next from crscourse into @couno,@couname
+end
+
+deallocate crscourse
+select @@fetch_status

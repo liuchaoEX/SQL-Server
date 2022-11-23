@@ -126,5 +126,7 @@ print ('-----------------------------------')
 fetch next from crscourse into @couno,@couname
 end
 
+select @@FETCH_STATUS
+
 deallocate crscourse
 select @@fetch_status

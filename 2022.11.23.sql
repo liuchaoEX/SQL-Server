@@ -72,6 +72,18 @@ on department
 for update
 as
 print '二次触发'
-
-
 update Department set DepartName='计算机系' where DepartNo='05' 
+
+--删除触发器
+drop trigger text_trigger
+
+--重命名
+sp_rename text_trigger ,test_trg
+
+--禁用触发器
+alter table Department disable trigger test_trg
+
+update Department set DepartName='管理系' where DepartNo='05'
+--启动触发器
+alter table department enable trigger test_trg
+update Department set DepartName='计算机系' where DepartNo='05'

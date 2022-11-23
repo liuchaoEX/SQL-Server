@@ -100,5 +100,17 @@ update Department set DepartName='计算机系' where DepartNo='05'
 --创建游标的格式
 --declare  游标名称  cursor  游标类型 
 
---创建游标，通过游标逐条读取course表中每条记录、
+--创建游标，通过游标逐条读取course表中每条记录
+declare cur_course cursor forward_only
+for
 select * from Course
+
+--打开游标
+open cur_course
+
+--读取数据
+fetch next from cur_course
+fetch next from cur_course
+fetch next from cur_course
+--通过游标更新当前游标指向的数据
+update course set limitnum=100 where current of cur_course

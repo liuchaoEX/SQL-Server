@@ -64,3 +64,8 @@ select * from testtran
 --RID key  pg ext tab  db
 --锁模式
 --共享锁（select）、排他式（update delete insert）、更新锁
+
+--14.5
+ exec sp_lock
+
+ --14.6

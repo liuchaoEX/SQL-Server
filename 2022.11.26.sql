@@ -65,7 +65,10 @@ select * from testtran
 --锁模式
 --共享锁（select）、排他式（update delete insert）、更新锁
 
+
 --14.5
  exec sp_lock
 
  --14.6
+ /*事务1：student  update、course update*/
+ /*事务2：course update、student update*/
